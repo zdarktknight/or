@@ -1,0 +1,4 @@
+This is an toy example from: https://github.com/CGudapati/SCIP_CPP_examples
+Step 1: make 
+Step 2: cd bin
+Step 3: ./scip_toy
