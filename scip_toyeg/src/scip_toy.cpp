@@ -11,7 +11,8 @@
 #include <scip/scipdefplugins.h>
 
 SCIP_RETCODE execmain(int argc, const char** argv)
-{
+{   
+    // define envirn pointer
     SCIP* scip = nullptr;
     SCIP_CALL( SCIPcreate(&scip) );  //Creating the SCIP environment
 
@@ -24,35 +25,32 @@ SCIP_RETCODE execmain(int argc, const char** argv)
     
     SCIP_CALL(SCIPsetObjsense(scip, SCIP_OBJSENSE_MAXIMIZE));
 
-    
+    // define model Variable
     SCIP_VAR* x1 = nullptr;
-    
     SCIP_CALL( SCIPcreateVarBasic(scip,
-    &x1,                     // returns new index
-    "x1",                      // name
-    0.0,                      // lower bound
-    SCIPinfinity(scip),       // upper bound
-    3.0,                      // objective
-    SCIP_VARTYPE_CONTINUOUS));  // variable type
+                                    &x1,                     // returns new index
+                                    "x1",                      // name
+                                    0.0,                      // lower bound
+                                    SCIPinfinity(scip),       // upper bound
+                                    3.0,                      // objective
+                                    SCIP_VARTYPE_CONTINUOUS));  // variable type
                                 
-    
     SCIP_CALL( SCIPaddVar(scip, x1) );  //Adding the first variable
     
     SCIP_VAR* x2 = nullptr;;
-    
     SCIP_CALL( SCIPcreateVarBasic(scip,
-    &x2,                     // returns new index
-    "x2",                      // name
-    0.0,                      // lower bound
-    SCIPinfinity(scip),       // upper bound
-    2.0,                      // objective
-    SCIP_VARTYPE_CONTINUOUS));  // variable type
+                                    &x2,                     // returns new index
+                                    "x2",                      // name
+                                    0.0,                      // lower bound
+                                    SCIPinfinity(scip),       // upper bound
+                                    2.0,                      // objective
+                                    SCIP_VARTYPE_CONTINUOUS));  // variable type
     
     SCIP_CALL( SCIPaddVar(scip, x2) ); //Adding the second variable
     
+
+    // define model Constraints
     SCIP_CONS* cons1 = nullptr;;
-    
-    
     SCIP_CALL(SCIPcreateConsBasicLinear(scip,                 // SCIP pointer
                                         &cons1,               // pointer to SCIP constraint
                                         "cons1",              // name of the constraint
